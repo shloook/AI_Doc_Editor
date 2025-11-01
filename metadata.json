@@ -1,0 +1,5 @@
+{
+  "name": "DocPi",
+  "description": "An intelligent document processing application that converts photos into PDF, DOCS, or XLSX files. Leveraging AI, it can clean documents and remove handwritten marks to produce professional-quality files.",
+  "requestFramePermissions": []
+}
