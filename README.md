@@ -2,35 +2,176 @@
 <img width="4834" height="1667" alt="bento-grid-section" src="https://github.com/user-attachments/assets/4a900377-ff69-4450-9a2e-19b33230fadc" />
 
 
-## Project Overview
+AI_Doc_Editor is a modern, lightweight AI-powered document editor. It provides clean writing space, real-time editing, AI suggestions, modular architecture, and minimal setup.
 
-The **AI Document Editor** is a sophisticated application designed to leverage **Artificial Intelligence** and **Large Language Models (LLMs)** to enhance and automate document processing and editing workflows. This tool aims to streamline tasks such as text summarization, content revision, data extraction, and structural editing within documents, providing a powerful, efficient, and intelligent solution for content management.
+## ✨ Features
+- Real-time text editor  
+- AI-powered writing suggestions  
+- Lightweight, fast, modular  
+- No heavy frameworks  
+- Fully customizable UI  
+- MIT Licensed  
 
----
+## 🚀 Getting Started
 
-## Key Features
-
-This project is engineered to offer a comprehensive set of capabilities for document intelligence:
-
-* **Intelligent Content Revision:** Utilize LLMs to rewrite, correct, or expand sections of a document based on user-defined prompts and context.
-* **Automated Summarization:** Generate concise, accurate summaries of lengthy documents, saving significant time in content review.
-* **Structured Data Extraction:** Accurately identify and extract key entities, facts, and structured data (e.g., tables, figures) from various document formats.
-* **Multi-Format Support:** Handle and process documents in common formats such as PDF, DOCX, and plain text.
-* **Custom Prompts and Templates:** Allow users to define custom AI prompts for specialized tasks, such as generating release notes, policy drafts, or technical documentation.
-
----
-
-## Installation
-
-To set up the AI Document Editor locally, follow the steps below. This project requires **Python 3.8+** and assumes familiarity with virtual environments.
-
-### Prerequisites
-
-* Python 3.8+
-* `pip` (Python package installer)
-
-### Step 1: Clone the Repository
-
+### Clone the repository
 ```bash
-git clone [https://github.com/shloook/AI_Doc_Editor.git](https://github.com/shloook/AI_Doc_Editor.git)
+git clone https://github.com/shloook/AI_Doc_Editor.git
 cd AI_Doc_Editor
+```
+
+### Run the project (static)
+Open the file:
+```
+index.html
+```
+
+### Run with Node.js (if using API backend)
+```bash
+npm install
+npm start
+```
+
+---
+
+## 📂 Project Structure
+```
+AI_Doc_Editor/
+├── index.html
+├── style.css
+├── script.js
+├── ai.js
+├── assets/
+├── LICENSE
+└── README.md
+```
+
+---
+
+## 🧠 Core Editor Logic (script.js)
+```javascript
+const editor = document.getElementById("editor");
+
+editor.addEventListener("input", () => {
+    console.log("Editor updated:", editor.innerText);
+});
+```
+
+---
+
+## 🤖 AI Suggestion Logic (ai.js)
+```javascript
+async function generateSuggestion(text) {
+    const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ input: text })
+    });
+
+    const data = await response.json();
+    return data.suggestion;
+}
+
+document.getElementById("suggestBtn").onclick = async () => {
+    const userText = editor.innerText;
+    const suggestion = await generateSuggestion(userText);
+    document.getElementById("suggestionBox").innerText = suggestion;
+};
+```
+
+---
+
+## 🖥 HTML Layout (index.html)
+```html
+<div class="container">
+    <h1>AI Doc Editor</h1>
+
+    <div id="editor" class="editor" contenteditable="true">
+        Start typing your document here...
+    </div>
+
+    <button id="suggestBtn">Generate AI Suggestion</button>
+
+    <div id="suggestionBox" class="suggestion"></div>
+</div>
+```
+
+---
+
+## 🎨 Styling (style.css)
+```css
+body {
+    background: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+}
+
+.editor {
+    width: 100%;
+    min-height: 300px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.suggestion {
+    margin-top: 20px;
+    background: #eaf3ff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #bcd7ff;
+}
+```
+
+---
+
+## 🧪 Optional API
+
+### Generate AI Suggestion
+```
+POST /api/generate
+Content-Type: application/json
+
+{
+  "input": "Your text here"
+}
+```
+
+### Example Response
+```json
+{
+  "suggestion": "AI-generated improved version of your text."
+}
+```
+
+---
+
+## 🤝 Contributing
+1. Fork the repository  
+2. Create a feature branch  
+3. Commit changes  
+4. Open a pull request  
+
+---
+
+## 📄 License
+MIT License.
+
+---
+
+## ⭐ Acknowledgements
+Inspired by modern editors, AI writing tools, and minimal UI design.
